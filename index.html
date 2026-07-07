@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Bullet — Every green candle is one step closer to the moon 🐂🚀
+    </title>
+    <meta
+      name="description"
+      content="Bullet — a community-driven Solana meme coin charging toward the moon. Buy on PumpSwap, chart on Dexscreener."
+    />
+
+    <!-- ==== Bootstrap Icons (X, Telegram, etc.) ==== -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <!-- ==== Comic Fonts ==== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="logo.png" />
+
+    <style>
+      /* ============================================================
+   Bullet — Comic-styled Solana meme coin site
+   ============================================================ */
+
+      :root {
+        --gold: #ffc400;
+        --gold-lite: #ffe066;
+        --gold-deep: #f59300;
+        --ink: #0a0906;
+        --panel: #14110a;
+        --paper: #fdf6e3;
+        --line: #000000;
+        --white: #ffffff;
+
+        --pop-shadow: 8px 8px 0 #000;
+        --pop-shadow-gold: 8px 8px 0 var(--gold-deep);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: var(--white);
+        background: var(--ink);
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* ---------- FIXED IMAGE BACKGROUND ---------- */
+      .bg-layer {
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        background: url("background.png") center/cover no-repeat fixed;
+        filter: saturate(1.05);
+      }
+      .bg-tint {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background: radial-gradient(
+            120% 80% at 50% 0%,
+            rgba(255, 196, 0, 0.1),
+            transparent 55%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(6, 5, 3, 0.82),
+            rgba(6, 5, 3, 0.9) 45%,
+            rgba(6, 5, 3, 0.95)
+          );
+      }
+      /* Halftone comic dots over everything */
+      .bg-dots {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.14;
+        background-image: radial-gradient(
+          rgba(255, 196, 0, 0.9) 1.4px,
+          transparent 1.6px
+        );
+        background-size: 16px 16px;
+        mask-image: linear-gradient(
+          180deg,
+          transparent,
+          #000 20%,
+          #000 80%,
+          transparent
+        );
+      }
+
+      /* ---------- Comic Typography ---------- */
+      .display {
+        font-family: "Bangers", cursive;
+        letter-spacing: 2px;
+        line-height: 0.95;
+      }
+      .chunk {
+        font-family: "Luckiest Guy", cursive;
+        letter-spacing: 1px;
+      }
+
+      .stroke-gold {
+        color: var(--gold);
+        -webkit-text-stroke: 2.5px #000;
+        paint-order: stroke fill;
+        text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.55);
+      }
+      .stroke-white {
+        color: #fff;
+        -webkit-text-stroke: 2.5px #000;
+        paint-order: stroke fill;
+        text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+      }
+
+      /* ---------- Comic Panel ---------- */
+      .panel {
+        background: var(--panel);
+        border: 5px solid #000;
+        border-radius: 14px;
+        box-shadow: var(--pop-shadow);
+        position: relative;
+      }
+      .panel.paper {
+        background: var(--paper);
+        color: #1a1407;
+      }
+
+      /* Buttons ---------- */
+      .btn-comic {
+        font-family: "Luckiest Guy", cursive;
+        letter-spacing: 1px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.6rem;
+        border: 4px solid #000;
+        border-radius: 12px;
+        background: var(--gold);
+        color: #1a1206;
+        text-decoration: none;
+        font-size: 1.05rem;
+        box-shadow: 5px 5px 0 #000;
+        transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
+      .btn-comic:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0 #000;
+        background: var(--gold-lite);
+      }
+      .btn-comic:active {
+        transform: translate(3px, 3px);
+        box-shadow: 2px 2px 0 #000;
+      }
+      .btn-dark {
+        background: #000;
+        color: var(--gold);
+      }
+      .btn-dark:hover {
+        background: #111;
+      }
+
+      /* Section framing ---------- */
+      section {
+        position: relative;
+        padding: 110px 20px;
+      }
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      .stage {
+        perspective: 1600px;
+      }
+
+      /* Speech-bubble section heading */
+      .bubble {
+        display: inline-block;
+        background: var(--gold);
+        color: #000;
+        font-family: "Bangers", cursive;
+        letter-spacing: 2px;
+        font-size: clamp(1.6rem, 4vw, 2.6rem);
+        padding: 0.35em 0.9em;
+        border: 5px solid #000;
+        border-radius: 16px;
+        position: relative;
+        box-shadow: 6px 6px 0 #000;
+        transform: rotate(-2deg);
+      }
+      .bubble::after {
+        content: "";
+        position: absolute;
+        left: 38px;
+        bottom: -26px;
+        border-width: 26px 22px 0 0;
+        border-style: solid;
+        border-color: var(--gold) transparent transparent transparent;
+        filter: drop-shadow(3px 4px 0 #000);
+      }
+
+      /* comic burst star */
+      .burst {
+        position: absolute;
+        font-family: "Bangers", cursive;
+        color: var(--gold);
+        -webkit-text-stroke: 2px #000;
+        text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+        font-size: 1.4rem;
+        transform: rotate(-12deg);
+        z-index: 2;
+      }
+
+      /* ============================================================
+   NAVBAR
+   ============================================================ */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 26px;
+        background: rgba(8, 7, 4, 0.72);
+        backdrop-filter: blur(8px);
+        border-bottom: 4px solid #000;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+      .brand img {
+        width: 48px;
+        height: 48px;
+        filter: drop-shadow(0 0 10px rgba(255, 196, 0, 0.6));
+      }
+      .brand span {
+        font-family: "Bangers", cursive;
+        font-size: 1.9rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        -webkit-text-stroke: 1.5px #000;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+      }
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--gold);
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      /* ============================================================
+   HERO
+   ============================================================ */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding-top: 120px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .hero-title {
+        font-size: clamp(3.4rem, 9vw, 7rem);
+      }
+      .hero-sub {
+        font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+        font-weight: 600;
+        margin: 18px 0 26px;
+        max-width: 520px;
+        color: #ffe9b0;
+      }
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 26px;
+      }
+
+      /* CA box */
+      .ca-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        background: #000;
+        border: 4px solid var(--gold);
+        border-radius: 12px;
+        padding: 12px 16px;
+        max-width: 560px;
+      }
+      .ca-box .lbl {
+        font-family: "Luckiest Guy", cursive;
+        color: var(--gold);
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+      .ca-box code {
+        font-family: "Courier New", monospace;
+        color: #fff;
+        font-size: 0.9rem;
+        word-break: break-all;
+        flex: 1;
+        min-width: 180px;
+      }
+      .copy-btn {
+        background: var(--gold);
+        border: 3px solid #000;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-family: "Luckiest Guy", cursive;
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
+      .copy-btn:hover {
+        background: var(--gold-lite);
+      }
+
+      .hero-art {
+        position: relative;
+      }
+      .hero-art img {
+        width: 100%;
+        max-width: 520px;
+        display: block;
+        margin: 0 auto;
+        border: 6px solid #000;
+        border-radius: 20px;
+        box-shadow: 12px 12px 0 var(--gold-deep);
+        transform: rotateY(-10deg) rotateX(3deg) rotate(-1deg);
+        transition: transform 0.4s ease;
+        animation: float 5s ease-in-out infinite;
+      }
+      .hero-art img:hover {
+        transform: rotateY(0) rotateX(0) rotate(0);
+      }
+      @keyframes float {
+        0%,
+        100% {
+          translate: 0 0;
+        }
+        50% {
+          translate: 0 -16px;
+        }
+      }
+
+      .stat-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 22px;
+      }
+      .stat {
+        background: var(--gold);
+        color: #000;
+        border: 4px solid #000;
+        border-radius: 12px;
+        padding: 8px 16px;
+        box-shadow: 4px 4px 0 #000;
+        transform: rotate(-2deg);
+        font-family: "Luckiest Guy", cursive;
+        font-size: 0.85rem;
+      }
+      .stat:nth-child(even) {
+        transform: rotate(2deg);
+        background: #000;
+        color: var(--gold);
+      }
+
+      /* ============================================================
+   ABOUT
+   ============================================================ */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 44px;
+        align-items: center;
+        margin-top: 44px;
+      }
+      .about-img {
+        position: relative;
+      }
+      .about-img img {
+        width: 100%;
+        border: 6px solid #000;
+        border-radius: 18px;
+        box-shadow: 12px 12px 0 #000;
+        transform: rotate(-2deg);
+      }
+      .about-panel {
+        padding: 34px;
+        transform: rotateY(6deg);
+        transform-origin: left center;
+      }
+      .about-panel h3 {
+        font-family: "Bangers", cursive;
+        font-size: 2rem;
+        letter-spacing: 1px;
+        color: var(--gold-deep);
+        margin-bottom: 14px;
+      }
+      .about-panel p {
+        line-height: 1.75;
+        font-size: 1.03rem;
+      }
+      .about-panel .tag {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        background: #000;
+        color: var(--gold);
+        border: 3px solid var(--gold-deep);
+        border-radius: 20px;
+        padding: 5px 14px;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+
+      /* ============================================================
+   HOW TO BUY  (zig-zag perspective steps)
+   ============================================================ */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 26px;
+        margin-top: 54px;
+      }
+      .step {
+        padding: 26px 22px 30px;
+        text-align: center;
+        transition: transform 0.25s ease;
+      }
+      .step:nth-child(1) {
+        transform: rotate(-2deg) translateY(0);
+      }
+      .step:nth-child(2) {
+        transform: rotate(2deg) translateY(26px);
+      }
+      .step:nth-child(3) {
+        transform: rotate(-2deg) translateY(0);
+      }
+      .step:nth-child(4) {
+        transform: rotate(2deg) translateY(26px);
+      }
+      .step:hover {
+        transform: rotate(0) translateY(-8px) scale(1.03);
+        z-index: 3;
+      }
+      .step .num {
+        width: 56px;
+        height: 56px;
+        margin: -52px auto 14px;
+        display: grid;
+        place-items: center;
+        background: var(--gold);
+        color: #000;
+        border: 5px solid #000;
+        border-radius: 50%;
+        font-family: "Luckiest Guy", cursive;
+        font-size: 1.5rem;
+        box-shadow: 4px 4px 0 #000;
+      }
+      .step i {
+        font-size: 2.2rem;
+        color: var(--gold);
+        margin-bottom: 10px;
+        display: block;
+      }
+      .step h4 {
+        font-family: "Bangers", cursive;
+        letter-spacing: 1px;
+        font-size: 1.35rem;
+        color: var(--gold-lite);
+        margin-bottom: 8px;
+      }
+      .step p {
+        font-size: 0.92rem;
+        color: #e9dcbb;
+        line-height: 1.5;
+      }
+
+      /* ============================================================
+   CHART
+   ============================================================ */
+      .chart-frame {
+        margin-top: 44px;
+        border: 6px solid #000;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 14px 14px 0 var(--gold-deep);
+        background: #0a0a0a;
+      }
+      .chart-frame iframe {
+        width: 100%;
+        height: 620px;
+        border: 0;
+        display: block;
+      }
+
+      /* ============================================================
+   JOIN US  (banner.png ONLY here)
+   ============================================================ */
+      #join .join-panel {
+        padding: 0;
+        overflow: hidden;
+      }
+      .banner-hero {
+        position: relative;
+        background: url("banner.png") center/cover no-repeat;
+        min-height: 340px;
+        display: flex;
+        align-items: flex-end;
+      }
+      .banner-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 30%,
+          rgba(0, 0, 0, 0.85)
+        );
+      }
+      .join-inner {
+        position: relative;
+        z-index: 2;
+        padding: 40px 34px;
+        width: 100%;
+        text-align: center;
+      }
+      .join-inner h3 {
+        font-family: "Bangers", cursive;
+        font-size: clamp(2rem, 5vw, 3rem);
+        letter-spacing: 2px;
+        color: var(--gold);
+        -webkit-text-stroke: 1.5px #000;
+      }
+      .join-inner p {
+        max-width: 620px;
+        margin: 8px auto 24px;
+        color: #ffe9b0;
+        font-weight: 600;
+      }
+      .socials {
+        display: flex;
+        gap: 18px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .soc {
+        width: 64px;
+        height: 64px;
+        display: grid;
+        place-items: center;
+        background: var(--gold);
+        color: #000;
+        border: 4px solid #000;
+        border-radius: 16px;
+        font-size: 1.9rem;
+        text-decoration: none;
+        box-shadow: 5px 5px 0 #000;
+        transition: transform 0.15s, background 0.2s;
+      }
+      .soc:hover {
+        transform: translate(-2px, -2px) rotate(-4deg);
+        box-shadow: 8px 8px 0 #000;
+        background: var(--gold-lite);
+      }
+      .soc svg {
+        width: 30px;
+        height: 30px;
+      }
+
+      /* ============================================================
+   FOOTER
+   ============================================================ */
+      footer {
+        text-align: center;
+        padding: 44px 20px;
+        border-top: 4px solid #000;
+        background: rgba(0, 0, 0, 0.55);
+      }
+      footer img {
+        width: 60px;
+        margin-bottom: 12px;
+        filter: drop-shadow(0 0 10px rgba(255, 196, 0, 0.5));
+      }
+      footer .display {
+        font-size: 2rem;
+        color: var(--gold);
+      }
+      footer .disc {
+        max-width: 640px;
+        margin: 14px auto 0;
+        font-size: 0.8rem;
+        color: #9c9377;
+        line-height: 1.6;
+      }
+
+      /* Toast */
+      #toast {
+        position: fixed;
+        bottom: 26px;
+        left: 50%;
+        translate: -50% 20px;
+        opacity: 0;
+        background: var(--gold);
+        color: #000;
+        font-family: "Luckiest Guy", cursive;
+        border: 4px solid #000;
+        border-radius: 12px;
+        padding: 12px 22px;
+        box-shadow: 6px 6px 0 #000;
+        z-index: 100;
+        transition: 0.3s;
+        pointer-events: none;
+      }
+      #toast.show {
+        opacity: 1;
+        translate: -50% 0;
+      }
+
+      /* ============================================================
+   RESPONSIVE
+   ============================================================ */
+      @media (max-width: 900px) {
+        .nav-links {
+          position: fixed;
+          top: 76px;
+          right: 14px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          background: rgba(8, 7, 4, 0.96);
+          border: 4px solid #000;
+          border-radius: 14px;
+          padding: 20px 26px;
+          box-shadow: 6px 6px 0 #000;
+          display: none;
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-toggle {
+          display: block;
+        }
+        .hero-grid,
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-panel {
+          transform: none;
+        }
+        .hero-art {
+          order: -1;
+        }
+        .steps {
+          grid-template-columns: 1fr 1fr;
+          gap: 34px 20px;
+        }
+        .step {
+          transform: none !important;
+        }
+      }
+      @media (max-width: 560px) {
+        section {
+          padding: 80px 16px;
+        }
+        .steps {
+          grid-template-columns: 1fr;
+        }
+        .chart-frame iframe {
+          height: 480px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-layer"></div>
+    <div class="bg-tint"></div>
+    <div class="bg-dots"></div>
+
+    <!-- ================= NAV ================= -->
+    <nav>
+      <a class="brand" href="#hero">
+        <img src="logo.png" alt="Bullet logo" />
+        <span>Bullet</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="menu">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#buy">How to Buy</a>
+        <a href="#chart">Chart</a>
+        <a href="#join">Join Us</a>
+        <a
+          class="btn-comic"
+          style="padding: 0.55rem 1rem; font-size: 0.9rem"
+          href="#"
+          data-link="pumpswap"
+          >Buy Now</a
+        >
+      </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section id="hero" class="stage">
+      <span class="burst" style="top: 130px; right: 8%">POW!</span>
+      <span
+        class="burst"
+        style="bottom: 80px; left: 5%; transform: rotate(8deg)"
+        >BULLISH!</span
+      >
+      <div class="wrap hero-grid">
+        <div>
+          <h1 class="display hero-title">
+            <span class="stroke-white">BUL</span
+            ><span class="stroke-gold">LET</span>
+          </h1>
+          <p class="hero-sub">
+            🐂💥 Every green candle is another step toward the moon. 🚀📈 Charge
+            ahead with the herd — speed, strength &amp; unstoppable bull energy.
+          </p>
+
+          <div class="hero-cta">
+            <a class="btn-comic" href="#" data-link="pumpswap"
+              ><i class="bi bi-lightning-charge-fill"></i> Buy on PumpSwap</a
+            >
+            <a class="btn-comic btn-dark" href="#chart"
+              ><i class="bi bi-graph-up-arrow"></i> View Chart</a
+            >
+          </div>
+
+          <div class="ca-box">
+            <span class="lbl">CA:</span>
+            <code id="caText">Loading contract…</code>
+            <button class="copy-btn" id="copyCA">COPY</button>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat">$Bullet</div>
+            <div class="stat">SOLANA</div>
+            <div class="stat">COMMUNITY OWNED</div>
+            <div class="stat">TO THE MOON 🚀</div>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <img src="hero.png" alt="Bullet riding the bull" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="stage">
+      <div class="wrap">
+        <div class="bubble">ABOUT Bullet</div>
+        <div class="about-grid">
+          <div class="about-img">
+            <img src="main.png" alt="Bullet mascot charging" />
+          </div>
+          <div class="panel paper about-panel">
+            <h3>We don't dump. We PUMP. 🐂</h3>
+            <p>
+              Bullet is a community-driven meme project built for people who
+              believe in the power of the bull market. Inspired by unstoppable
+              momentum, Bullet represents speed, strength, and the confidence to
+              keep moving forward no matter what the market brings.
+            </p>
+            <p style="margin-top: 14px">
+              Our mascot charges ahead with fearless energy, bringing together
+              traders, builders, and meme lovers who share one goal — to ride
+              the next big wave together. Hold strong, enjoy the memes, support
+              each other, and let the bullish journey begin. 🚀
+            </p>
+            <div class="tag">
+              <span class="chip">💎 HODL &amp; MEME</span>
+              <span class="chip">⚡ BULL MARKET ENERGY</span>
+              <span class="chip">🌙 EVERY CHARGE = 1 STEP CLOSER</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW TO BUY ================= -->
+    <section id="buy" class="stage">
+      <div class="wrap" style="text-align: center">
+        <div class="bubble" style="transform: rotate(2deg)">HOW TO BUY</div>
+      </div>
+      <div class="wrap">
+        <div class="steps">
+          <div class="panel step">
+            <div class="num">1</div>
+            <i class="bi bi-wallet2"></i>
+            <h4>Get a Wallet</h4>
+            <p>
+              Download Phantom or Solflare and set up your Solana wallet in
+              minutes.
+            </p>
+          </div>
+          <div class="panel step">
+            <div class="num">2</div>
+            <i class="bi bi-currency-exchange"></i>
+            <h4>Load Up SOL</h4>
+            <p>
+              Buy some $SOL from any exchange and send it to your new wallet.
+            </p>
+          </div>
+          <div class="panel step">
+            <div class="num">3</div>
+            <i class="bi bi-lightning-charge-fill"></i>
+            <h4>Swap on PumpSwap</h4>
+            <p>
+              Connect to PumpSwap, paste the Bullet contract, and swap SOL for
+              $Bullet.
+            </p>
+          </div>
+          <div class="panel step">
+            <div class="num">4</div>
+            <i class="bi bi-rocket-takeoff-fill"></i>
+            <h4>Ride the Bull</h4>
+            <p>
+              Hold strong, share the memes, and charge with the herd to the
+              moon. 🚀
+            </p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 44px">
+          <a class="btn-comic" href="#" data-link="pumpswap"
+            ><i class="bi bi-lightning-charge-fill"></i> Buy $Bullet Now</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHART (Dexscreener embed only) ================= -->
+    <section id="chart" class="stage">
+      <div class="wrap">
+        <div class="bubble" style="transform: rotate(-2deg)">LIVE CHART</div>
+        <div class="chart-frame">
+          <iframe
+            id="dexFrame"
+            title="Bullet Dexscreener chart"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <div style="text-align: center; margin-top: 26px">
+          <a
+            class="btn-comic btn-dark"
+            id="dexLink"
+            href="#"
+            target="_blank"
+            rel="noopener"
+            ><i class="bi bi-box-arrow-up-right"></i> Open on Dexscreener</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= JOIN US (banner.png ONLY here) ================= -->
+    <section id="join" class="stage">
+      <div class="wrap">
+        <div class="panel join-panel">
+          <div class="banner-hero">
+            <div class="join-inner">
+              <h3>JOIN THE HERD 🐂</h3>
+              <p>
+                Great communities are built on positivity, creativity &amp;
+                strong conviction. Follow, chat, and charge with us — the
+                bullish journey starts here.
+              </p>
+              <div class="socials">
+                <a
+                  class="soc"
+                  href="https://x.com/bulletcoinsol"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="X (Twitter)"
+                >
+                  <i class="bi bi-twitter-x"></i>
+                </a>
+                <a
+                  class="soc"
+                  href="https://t.me/bulletcoinsol"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Telegram"
+                >
+                  <i class="bi bi-telegram"></i>
+                </a>
+                <a
+                  class="soc"
+                  id="pumpSoc"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Pump.fun"
+                >
+                  <!-- pump.fun diagonal pill icon -->
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="3"
+                      y="8"
+                      width="18"
+                      height="8"
+                      rx="4"
+                      transform="rotate(-45 12 12)"
+                      fill="#000"
+                    />
+                    <rect
+                      x="12"
+                      y="8"
+                      width="9"
+                      height="8"
+                      rx="4"
+                      transform="rotate(-45 12 12)"
+                      fill="#1a1206"
+                    />
+                  </svg>
+                </a>
+                <a
+                  class="soc"
+                  id="dexSoc"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Dexscreener"
+                >
+                  <!-- dexscreener icon -->
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3 17l5-6 4 3 5-8 4 5"
+                      stroke="#000"
+                      stroke-width="2.4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="20" cy="7" r="1.8" fill="#000" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <img src="logo.png" alt="Bullet" />
+      <div class="display" style="letter-spacing: 2px">Bullet</div>
+      <p style="color: #ffe9b0; font-weight: 600; margin-top: 6px">
+        🐂🚀 Welcome to Bullet, where every charge is one step closer to the
+        moon.
+      </p>
+      <p class="disc">
+        $Bullet is a community meme coin with no intrinsic value or expectation
+        of financial return. It exists purely for entertainment and community
+        fun. Nothing here is financial advice. Always do your own research.
+        &copy; <span id="yr"></span> Bullet.
+      </p>
+    </footer>
+
+    <div id="toast">Copied! 🐂</div>
+
+    <script>
+      /* ============================================================
+   🔧 PATCH HERE — set both at once. Every pump.fun / PumpSwap /
+   Dexscreener link + the embedded chart update automatically.
+   ============================================================ */
+      const CONFIG = {
+        CA: "3fc6tLVPx6kABcgbn44P3LAmXFzyx9fyckiJQfoQpump", // ← Bullet token contract address
+        PAIR: "CHM28CMrK4Wrj4mReCVYSxVBubBmWzQtKuW6Zv822U1x", // ← Dexscreener Solana PAIR address
+      };
+      /* ============================================================ */
+
+      // Derived links (do not edit — driven by CONFIG above)
+      const LINKS = {
+        pumpfun: `https://pump.fun/coin/${CONFIG.CA}`,
+        pumpswap: `https://swap.pump.fun/?input=So11111111111111111111111111111111111111112&output=${CONFIG.CA}`,
+        dexscreen: `https://dexscreener.com/solana/${CONFIG.PAIR}`,
+        dexembed: `https://dexscreener.com/solana/${CONFIG.PAIR}?embed=1&loadChartSettings=0&trades=0&tabs=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=0&chartType=usd&interval=15`,
+      };
+
+      // Wire up all buy links (PumpSwap) + pump.fun social + dexscreener
+      document
+        .querySelectorAll('[data-link="pumpswap"]')
+        .forEach((a) => (a.href = LINKS.pumpswap));
+      document.getElementById("pumpSoc").href = LINKS.pumpfun;
+      document.getElementById("dexSoc").href = LINKS.dexscreen;
+      document.getElementById("dexLink").href = LINKS.dexscreen;
+      document.getElementById("dexFrame").src = LINKS.dexembed;
+
+      // CA display + copy
+      document.getElementById("caText").textContent = CONFIG.CA;
+      const toast = document.getElementById("toast");
+      document.getElementById("copyCA").addEventListener("click", () => {
+        navigator.clipboard.writeText(CONFIG.CA).then(() => {
+          toast.classList.add("show");
+          setTimeout(() => toast.classList.remove("show"), 1600);
+        });
+      });
+
+      // Mobile nav
+      const navLinks = document.getElementById("navLinks");
+      document
+        .getElementById("navToggle")
+        .addEventListener("click", () => navLinks.classList.toggle("open"));
+      navLinks
+        .querySelectorAll("a")
+        .forEach((a) =>
+          a.addEventListener("click", () => navLinks.classList.remove("open"))
+        );
+
+      // Year
+      document.getElementById("yr").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
